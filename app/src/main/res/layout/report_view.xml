@@ -1,0 +1,86 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="lt.softec.aurelijus.fx.BlankFragment">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/c1Balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="1 balance:"
+            android:textSize="25sp"></TextView>
+
+        <TextView
+            android:id="@+id/c2Balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/c1Balance"
+            android:paddingTop="10dp"
+            android:text="2 balance: "
+            android:textSize="25sp"></TextView>
+
+        <TextView
+            android:id="@+id/c3Balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/c2Balance"
+            android:paddingTop="10dp"
+            android:text="3 balance: "
+            android:textSize="25sp"></TextView>
+
+        <TextView
+            android:id="@+id/c1Fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/c3Balance"
+            android:paddingTop="10dp"
+            android:text="1 fee: "
+            android:textSize="25sp"></TextView>
+
+        <TextView
+            android:id="@+id/c2Fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/c1Fee"
+            android:paddingTop="10dp"
+            android:text="2 fee: "
+            android:textSize="25sp"></TextView>
+
+        <TextView
+            android:id="@+id/c3Fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/c2Fee"
+            android:paddingTop="10dp"
+            android:text="3 fee: "
+            android:textSize="25sp"></TextView>
+
+        <TextView
+            android:id="@+id/feesCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/c3Fee"
+            android:paddingTop="10dp"
+            android:text="Fees count: "
+            android:textSize="25sp"></TextView>
+
+        <Button
+            android:id="@+id/buttonReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/feesCount"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="Reset balance" />
+
+    </RelativeLayout>
+
+</FrameLayout>

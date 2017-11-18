@@ -1,0 +1,147 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/convertView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:tag="convert_view"
+    tools:context="lt.softec.aurelijus.fx.BlankFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/amountTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="Sell amount: "
+            android:textSize="25sp"></TextView>
+
+        <EditText
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/amountTxt"
+            android:gravity="right"
+            android:inputType="number|numberDecimal"
+            android:minEms="8"
+            android:textSize="25sp"></EditText>
+
+        <TextView
+            android:id="@+id/sellTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/amountTxt"
+            android:paddingLeft="1dp"
+            android:paddingTop="22dp"
+            android:text="Sell: "
+            android:textSize="20sp"></TextView>
+
+        <TextView
+            android:id="@+id/buyTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sellTxt"
+            android:paddingTop="14dp"
+            android:text="Buy: "
+            android:textSize="20sp"></TextView>
+
+        <RadioGroup
+            android:id="@+id/sellRadio"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/amount"
+            android:layout_toRightOf="@+id/sellTxt"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <RadioButton
+                android:id="@+id/sellEur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="EUR" />
+
+            <RadioButton
+                android:id="@+id/sellUsd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="USD" />
+
+            <RadioButton
+                android:id="@+id/sellJpy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:text="JPY" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/buyRadio"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sellRadio"
+            android:layout_toRightOf="@+id/buyTxt"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <RadioButton
+                android:id="@+id/buyEur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="EUR" />
+
+            <RadioButton
+                android:id="@+id/buyUsd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="USD" />
+
+            <RadioButton
+                android:id="@+id/buyJpy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="JPY" />
+        </RadioGroup>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buyTxt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:indeterminate="true"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/buttonConvert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progressBar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="Convert" />
+
+        <TextView
+            android:id="@+id/json"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buttonConvert"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="20dp"
+            android:textSize="10sp"></TextView>
+
+
+    </RelativeLayout>
+
+</FrameLayout>
