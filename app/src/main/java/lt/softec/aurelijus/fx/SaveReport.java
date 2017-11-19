@@ -38,13 +38,14 @@ public class SaveReport
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_key), context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         mFeeCount = Float.parseFloat(sharedPref.getString("fee_count", "0.00"));
+        FeeModels feeModels = new FeeModels(mFeeCount);
 
-        if (mFeeCount + 1 <= 5) {
+        if (!feeModels.ApplyFee()) {
             mSellBalance = Double.parseDouble(sharedPref.getString(mSellCurrency, "0.00"));
             mSellBalance = mSellBalance - Double.parseDouble(mSellAmount);
             mSellBalanceFee = mSellBalance;
             mFee = "0.00";
-            mFeeDb = 0.00;
+            mFeeDb = Double.parseDouble(sharedPref.getString(mSellCurrency + "_fee", "0.00"));
         } else {
             mSellBalance = Double.parseDouble(sharedPref.getString(mSellCurrency, "0.00"));
             mFeeDb = Double.parseDouble(sharedPref.getString(mSellCurrency + "_fee", "0.00"));
@@ -64,12 +65,12 @@ public class SaveReport
             editor.putString("fee_count", Double.toString(mFeeCount + 1));
             editor.commit();
 
-            return "Jūs konvertavote " + mSellAmount + " " + mSellCurrency + " į " + mBuyAmount + " " +
-                    mBuyCurrency + ". Komisinis mokestis - " + mFee + " " + mSellCurrency + ".";
+            return "You sold " + mSellAmount + " " + mSellCurrency + " and bought " + mBuyAmount + " " +
+                    mBuyCurrency + "."+"\n" + "Transaction fee - " + mFee + " " + mSellCurrency + ".";
 
         }
         else{
-            CharSequence text = mSellCurrency + " sąskaitoje nepakanka lėšų";
+            CharSequence text = mSellCurrency + " currency balance is too low";
             Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
             toast.show();
             return String.valueOf(text);

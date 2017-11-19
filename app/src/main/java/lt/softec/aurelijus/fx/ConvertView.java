@@ -6,12 +6,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -24,7 +28,7 @@ public class ConvertView extends Fragment {
     private RadioButton mSellCurrency;
     private RadioGroup mBuyRadio;
     private RadioButton mBuyCurrency;
-    private Button mButtonConvert;
+    private ImageButton mButtonConvert;
     private EditText mAmount;
     private TextView mJsonAnswer;
     private ProgressBar mLoadingIndicator;
@@ -48,23 +52,38 @@ public class ConvertView extends Fragment {
         mButtonConvert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //reading amount
-
-                if (mAmount.getText().toString().isEmpty()) {
-                    return;
-                } else {
+                //check internet connectio
+                if (AppStatus.getInstance(getActivity()).isOnline()) {
+                    mJsonAnswer.setText("");
+                    //rotate a button
+                    Animation rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.button_rotate);
+                    rotation.setRepeatCount(1);
+                    mButtonConvert.startAnimation(rotation);
+                    //reading amount
+                    if (mAmount.getText().toString().isEmpty()) {
+                        Toast.makeText(getActivity(), "Please enter sell amount!", Toast.LENGTH_SHORT).show();
+                        mJsonAnswer.setText("Please enter sell amount!");
+                        return;
+                    } else {
+                        float amountValue = Float.parseFloat(mAmount.getText().toString());
+                    }
                     float amountValue = Float.parseFloat(mAmount.getText().toString());
-                }
-                float amountValue = Float.parseFloat(mAmount.getText().toString());
-                //getting sell currency
-                int selectedId = mSellRadio.getCheckedRadioButtonId();
-                mSellCurrency = (RadioButton) ConvertView.findViewById(selectedId);
-                //getting buy currency
-                selectedId = mBuyRadio.getCheckedRadioButtonId();
-                mBuyCurrency = (RadioButton) ConvertView.findViewById(selectedId);
+                    //getting sell currency
+                    int selectedId = mSellRadio.getCheckedRadioButtonId();
+                    mSellCurrency = (RadioButton) ConvertView.findViewById(selectedId);
+                    //getting buy currency
+                    selectedId = mBuyRadio.getCheckedRadioButtonId();
+                    mBuyCurrency = (RadioButton) ConvertView.findViewById(selectedId);
 
-                NetworkUtils network = new NetworkUtils(amountValue, mSellCurrency.getText().toString(), mBuyCurrency.getText().toString());
-                new QueryTask().execute(network.buildUrl());
+                    NetworkUtils network = new NetworkUtils(amountValue, mSellCurrency.getText().toString(), mBuyCurrency.getText().toString());
+                    new QueryTask().execute(network.buildUrl());
+                    //Toast.makeText(getActivity(), "Turime internetą!", Toast.LENGTH_SHORT).show();
+                } else {
+                    mJsonAnswer.setText("Please turn on internet ;-)");
+                    Toast.makeText(getActivity(), "Please turn on internet ;-)", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
             }
 
         });

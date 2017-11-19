@@ -123,14 +123,18 @@
             android:indeterminate="true"
             android:visibility="invisible" />
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonConvert"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_below="@+id/progressBar"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:text="Convert" />
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_convert"
+            android:tint="@color/colorAccent" />
+
 
         <TextView
             android:id="@+id/json"
@@ -139,7 +143,7 @@
             android:layout_below="@+id/buttonConvert"
             android:layout_centerHorizontal="true"
             android:paddingTop="20dp"
-            android:textSize="10sp"></TextView>
+            android:textSize="15sp"></TextView>
 
 
     </RelativeLayout>

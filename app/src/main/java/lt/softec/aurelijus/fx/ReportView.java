@@ -2,12 +2,16 @@ package lt.softec.aurelijus.fx;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,7 +27,7 @@ public class ReportView extends Fragment {
     private TextView c2feeView;
     private TextView c3feeView;
     private TextView feesCountView;
-    private Button mButtonReset;
+    private ImageButton mButtonReset;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,6 +42,13 @@ public class ReportView extends Fragment {
         mButtonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //shake a button
+                Animation rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.button_shake);
+                rotation.setRepeatCount(1);
+                mButtonReset.startAnimation(rotation);
+                Vibrator vibrator = (Vibrator) getActivity().getSystemService(getActivity().VIBRATOR_SERVICE);
+                vibrator.vibrate(250);
 
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("EUR", "1000.00");
